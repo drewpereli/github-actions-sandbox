@@ -1,0 +1,7 @@
+name: Deploy
+on: workflow-dispatch
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - run: aws --version
