@@ -1,5 +1,9 @@
 name: Deploy
-on: [workflow_dispatch, push]
+on:
+  workflow_dispatch
+  push:
+    branches:
+      - master
 jobs:
   deploy:
     runs-on: ubuntu-18.04
