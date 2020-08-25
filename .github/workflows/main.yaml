@@ -4,4 +4,10 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - run: aws --version
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - run: aws s3api list-objects --bucket=${{ secrets.DEPLOYMENT_S3_BUCKET }}
