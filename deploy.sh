@@ -1,3 +1,4 @@
+#!/bin/bash
 
 cwd=$(pwd)
 function_dirs=("./lambda-functions/main/" "./lambda-functions/screenshot/")
