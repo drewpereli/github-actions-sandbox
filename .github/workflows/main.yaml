@@ -18,6 +18,7 @@ jobs:
       with:
         base-branch-regex: master
         # repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: abc
         body-template: |
           this should be appended
         body-update-action: suffix
