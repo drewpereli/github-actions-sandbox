@@ -13,9 +13,14 @@ jobs:
     name: Add PR Comment
     runs-on: ubuntu-latest
     steps:
+      - name: Find comment
+        uses: peter-evans/find-comment@v1
+        id: fc
+        with:
+          issue-number: ${{github.event.number}}
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v1
         with:
-          issue-number: ${{github.event.number}}
+          comment-number: ${{ steps.fc.outputs.comment-id }}
           body: |
             **Edit:** Some additional info
