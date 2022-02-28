@@ -19,5 +19,8 @@ jobs:
         base-branch-regex: master
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         body-template: |
-          works again
+          ### Changes to Database Schema
+
+          * [ ] It looks like these changes affect the database schema. have you issued a PR for the [`whatever`](https://github.com) repository that includes the updated schema? If not, please run `mix ecto.dump`, commit the changes to `structure.sql`, and create a new PR.
+
         body-update-action: suffix
