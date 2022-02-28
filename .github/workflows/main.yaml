@@ -18,7 +18,7 @@ jobs:
       with:
         base-branch-regex: master
         # repo-token: ${{ secrets.GITHUB_TOKEN }}
-        repo-token: ''
+        repo-token: ' '
         body-template: |
           works w blank token
         body-update-action: suffix
