@@ -14,14 +14,9 @@ jobs:
     name: Add PR Comment
     runs-on: ubuntu-latest
     steps:
-      - name: Find comment
-        uses: peter-evans/find-comment@v1
-        id: fc
-        with:
-          issue-number: ${{github.event.number}}
-      - name: Update comment
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          body: |
-            **Edit:** Some additional info
+    - uses: tzkhan/pr-update-action@v2
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        body-template: |
+          this should be appended
+        body-update-action: 'suffix'
