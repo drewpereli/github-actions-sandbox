@@ -1,5 +1,17 @@
 name: Verify
-on: workflow_dispatch
+
+on: 
+  workflow_dispatch:
+    inputs:
+      site:
+        description: 'Production or staging'
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+
+run-name: Deploy to ${{ inputs.site }} by @${{ github.actor }}
 
 jobs:
   a:
@@ -7,7 +19,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Test ref
-        run: echo ${{ github.sha }}
+        run: echo "foo"
