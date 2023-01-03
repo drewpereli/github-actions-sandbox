@@ -7,4 +7,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run tests
-        run: echo "This works"
+        run: exit 1
