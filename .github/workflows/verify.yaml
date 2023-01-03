@@ -1,0 +1,10 @@
+name: Verify
+on: [push, workflow_dispatch]
+
+jobs:
+  linters:
+    name: Linters and Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        run: echo "This works"
