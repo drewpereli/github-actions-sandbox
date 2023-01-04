@@ -12,8 +12,8 @@ on:
           - production
   workflow_run:
     workflows: [Verify]
-    types:
-      - completed
+    types: [completed]
+    branches: [master]
 
 run-name: Deploy ${{ github.ref_name }} to ${{ inputs.site || 'production' }} by @${{ github.actor }}
 
@@ -21,7 +21,9 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
+    # If it's a workflow dispatch event, run it no matter what
+    # Else, make sure the "verify" workflow succeeded, and that the commit message doesn't end with the string "[skip deploy]"
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Deploy
-        run: echo "Deployed"
+        run: echo "${{ toJSON(github) }}"
