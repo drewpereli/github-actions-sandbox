@@ -15,7 +15,7 @@ on:
     types: [completed]
     branches: [master]
 
-run-name: Deploy ${{ github.ref_name }} to ${{ inputs.site || 'production' }} by @${{ github.actor }}
+run-name: Deploy ${{ github.event.head_commit.message }} to ${{ inputs.site || 'production' }} by @${{ github.actor }}
 
 jobs:
   deploy:
@@ -23,7 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     # If it's a workflow dispatch event, run it no matter what
     # Else, make sure the "verify" workflow succeeded, and that the commit message doesn't end with the string "[skip deploy]"
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Deploy
-        run: echo "${{ toJSON(github) }}"
+      - name: A
+        run: echo "${{ github.event.head_commit.message }}"
+      # - name: B
+      #   run: echo "${{ git log -1 --pretty=format:"%s" }}"
+      - name: C
+        run: echo "${{ github.event.commits[0].message }}"
