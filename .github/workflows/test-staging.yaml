@@ -1,0 +1,16 @@
+name: Test Staging
+on:
+  workflow_run:
+    workflows: [Deploy Staging]
+    types: [completed]
+jobs:
+  test_staging:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      run: echo "success"
+  fail:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      run: echo "failure"
