@@ -6,4 +6,5 @@ jobs:
   deploy_staging:
     runs-on: ubuntu-latest
     steps:
-      run: echo "foo"
+      - name: abc
+        run: echo "foo"
