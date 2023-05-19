@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: head_ref
-        run: echo '${{ github.head_ref }}'
-      - name: ref
-        run: echo '${{ github.ref }}'
+        run: echo '${{ github.head_ref }}' # branch name
       - name: message
         run: echo '${{ github.event.head_commit.message }}'
       - name: message
         run: echo '${{ toJSON(github.event.head_commit) }}'
+      - name: works
+        run: echo ${GITHUB_REF##*/}
