@@ -6,5 +6,11 @@ jobs:
   deploy_staging:
     runs-on: ubuntu-latest
     steps:
-      - name: abc
-        run: echo "foo"
+      - name: head_ref
+        run: echo '${{ github.head_ref }}'
+      - name: ref
+        run: echo '${{ github.ref }}'
+      - name: message
+        run: echo '${{ github.event.head_commit.message }}'
+      - name: message
+        run: echo '${{ toJSON(github.event.head_commit) }}'
