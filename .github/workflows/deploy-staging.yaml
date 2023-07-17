@@ -1,10 +1,14 @@
 name: Deploy Staging
 on:
   workflow_dispatch:
-  pull_request:
 jobs:
   deploy_staging:
     runs-on: ubuntu-latest
     steps:
-      - name: abc
-        run: echo "foo"
+      - name: Create file
+        run: echo "foo" > foo.txt
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: foo.txt
+          path: foo.txt
