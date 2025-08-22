@@ -1,1 +1,2 @@
 foo
+There is more text in here that should be helpful
