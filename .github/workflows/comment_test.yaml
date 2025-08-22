@@ -7,6 +7,7 @@ on:
 permissions:
   contents: read
   issues: write
+  pull-requests: write
 
 jobs:
   respond:
@@ -25,4 +26,3 @@ jobs:
               issue_number,
               body: "hello world",
             });
-
