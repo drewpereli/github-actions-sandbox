@@ -1,0 +1,35 @@
+name: Test failure-dependent job
+
+on:
+  workflow_dispatch:
+    inputs:
+      initial_job_should_succeed:
+        description: Whether the initial job should succeed
+        required: true
+        type: boolean
+        default: true
+
+jobs:
+  initial:
+    name: Initial job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Succeed or fail based on the workflow input
+        env:
+          SHOULD_SUCCEED: ${{ inputs.initial_job_should_succeed }}
+        run: |
+          if [[ "$SHOULD_SUCCEED" == "true" ]]; then
+            echo "Initial job succeeded as requested."
+          else
+            echo "Initial job failed as requested."
+            exit 1
+          fi
+
+  on-initial-failure:
+    name: Run only when the initial job fails
+    needs: initial
+    if: ${{ !cancelled() && needs.initial.result == 'failure' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Confirm failure-dependent job ran
+        run: echo "The initial job failed, so this dependent job was triggered."
